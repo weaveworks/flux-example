@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   name: helloworld
 spec:
-  minReadySeconds: 5
-  replicas: 12
+  minReadySeconds: 1
+  replicas: 5
   template:
     metadata:
       labels:
