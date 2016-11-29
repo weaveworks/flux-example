@@ -11,11 +11,18 @@ spec:
       labels:
         name: fluxsvc
     spec:
+      volumes:
+      - name: db-volume
+        hostPath:
+          path: /tmp/fluxdata
       containers:
       - name: fluxsvc
-        image: weaveworks/fluxsvc
-        imagePullPolicy: Never # must build manually
+        image: quay.io/squaremo/fluxsvc:dummy-v1
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /fluxdata
+          name: db-volume
         ports:
         - containerPort: 3030
         args:
-        - --database-source=file://flux.db
+        - --database-source=file:///fluxdata/flux.db
