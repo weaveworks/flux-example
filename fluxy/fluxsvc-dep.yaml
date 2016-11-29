@@ -1,0 +1,21 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: fluxsvc
+  namespace: fluxy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: fluxsvc
+    spec:
+      containers:
+      - name: fluxsvc
+        image: weaveworks/fluxsvc
+        imagePullPolicy: Never # must build manually
+        ports:
+        - containerPort: 3030
+        args:
+        - --database-source=file://flux.db
