@@ -17,7 +17,7 @@ spec:
           path: /tmp/fluxdata
       containers:
       - name: fluxsvc
-        image: quay.io/squaremo/fluxsvc:dummy-v2
+        image: quay.io/squaremo/fluxsvc:dummy-v1
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /fluxdata
