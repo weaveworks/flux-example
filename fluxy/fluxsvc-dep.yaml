@@ -17,7 +17,7 @@ spec:
           path: /tmp/fluxdata
       containers:
       - name: fluxsvc
-        image: quay.io/squaremo/fluxsvc:dont-drop-ws-on-error-b2fb99e-WIP
+        image: quay.io/squaremo/fluxsvc:dont-drop-ws-on-error-21009a8-WIP
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /fluxdata
