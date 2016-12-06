@@ -1,0 +1,29 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: fluxy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: postgres
+    spec:
+      volumes:
+      - name: db-volume
+        hostPath:
+          path: /tmp/fluxdata
+      containers:
+      - name: postgres
+        image: library/postgres
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: DB_PASS
+          value: password
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: db-volume

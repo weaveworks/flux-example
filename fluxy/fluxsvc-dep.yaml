@@ -5,24 +5,18 @@ metadata:
   name: fluxsvc
   namespace: fluxy
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
         name: fluxsvc
     spec:
-      volumes:
-      - name: db-volume
-        hostPath:
-          path: /tmp/fluxdata
       containers:
       - name: fluxsvc
         image: quay.io/squaremo/fluxsvc:nats-1
         imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - mountPath: /fluxdata
-          name: db-volume
         ports:
         - containerPort: 3030
         args:
-        - --database-source=file:///fluxdata/flux.db
+        - --database-source=postgres://postgres:password@postgres.fluxy.svc.cluster.local:5432?sslmode=disable
+        - --nats-url=nats://nats:4222
