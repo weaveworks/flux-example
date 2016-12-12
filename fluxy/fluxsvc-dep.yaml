@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: fluxsvc
-        image: quay.io/squaremo/fluxsvc:remove-mutex
+        image: quay.io/squaremo/fluxsvc:nats-4
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3030
