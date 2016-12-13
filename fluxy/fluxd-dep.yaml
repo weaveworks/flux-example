@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: fluxd
-        image: quay.io/weaveworks/fluxd:async-up-fluxd
+        image: quay.io/weaveworks/fluxd:master-93c412f
         imagePullPolicy: IfNotPresent
         args:
         - --token=ry7mugehyj385me95rijzym3ae1br6no
