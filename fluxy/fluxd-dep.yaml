@@ -1,0 +1,20 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: fluxd
+  namespace: fluxy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: fluxd
+    spec:
+      containers:
+      - name: fluxd
+        image: quay.io/weaveworks/fluxd:master-93c412f
+        args:
+        - --token=ry7mugehyj385me95rijzym3ae1br6no
+        #  connect to the local service
+        - --fluxsvc-address=ws://frontend.default.svc.cluster.local/api/flux
