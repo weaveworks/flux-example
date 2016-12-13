@@ -5,7 +5,7 @@ metadata:
   name: fluxsvc
   namespace: fluxy
 spec:
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
@@ -19,4 +19,4 @@ spec:
         - containerPort: 3030
         args:
         - --database-source=postgres://postgres:password@postgres.fluxy.svc.cluster.local:5432?sslmode=disable
-        - --nats-url=nats://nats:4222
+#        - --nats-url=nats://nats:4222
