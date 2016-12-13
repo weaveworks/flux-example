@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: fluxd
-        image: quay.io/weaveworks/fluxd:master-93c412f
+        image: quay.io/weaveworks/fluxd:async-io-fluxd
         args:
         - --token=ry7mugehyj385me95rijzym3ae1br6no
         #  connect to the local service
