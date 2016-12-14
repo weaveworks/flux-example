@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: fluxsvc
-        image: quay.io/squaremo/fluxsvc:async-up-fluxd
+        image: quay.io/squaremo/fluxsvc:nats-6
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3030
