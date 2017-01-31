@@ -13,10 +13,10 @@ spec:
     spec:
       containers:
       - name: fluxsvc
-        image: quay.io/squaremo/fluxsvc:nats-6
+        image: quay.io/squaremo/fluxsvc
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3030
         args:
         - --database-source=postgres://postgres:password@postgres.fluxy.svc.cluster.local:5432?sslmode=disable
-#        - --nats-url=nats://nats:4222
+        - --nats-url=nats://nats:4222
