@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hello-alt
-        image: quay.io/squaremo/hello_world:master-a000001
+        image: quay.io/squaremo/hello_world:master-a000002
         imagePullPolicy: Always
         env:
           - name: GET_HOSTS_FROM
