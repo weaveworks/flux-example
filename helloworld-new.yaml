@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   name: helloworld
 spec:
-  minReadySeconds: 1
-  replicas: 5
+  minReadySeconds: 5
+  replicas: 12
   template:
     metadata:
       labels:
@@ -12,17 +12,14 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: quay.io/squaremo/hello_world:master-a000002
+        image: quay.io/weaveworks/helloworld:master-a000001
         args:
         - -msg=Ahoy
         ports:
         - containerPort: 80
       - name: sidecar
-        image: quay.io/weaveworks/sidecar:master-a000002
+        image: quay.io/weaveworks/sidecar:master-a000001
         args:
         - -addr=:8080
         ports:
         - containerPort: 8080
-      imagePullSecrets:
-        - name: docker
-      restartPolicy: Always
