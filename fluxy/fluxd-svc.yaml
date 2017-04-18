@@ -5,6 +5,7 @@ metadata:
   name: fluxd
   namespace: fluxy
 spec:
+  type: NodePort
   ports:
   - port: 80
     targetPort: 3031
