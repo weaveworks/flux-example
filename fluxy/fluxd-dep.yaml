@@ -27,4 +27,4 @@ spec:
         - --git-url=git@github.com:squaremo/flux-example
         - --git-key=/secrets/flux/git/id-rsa-flux
         - --connect=ws://frontend.default.svc.cluster.local/api/flux
-        - --token=g7k7bkody4j737weepkzszwjobjupkut
+        - --token=4ajbcnxcmtamobqh4ye1iszyxmqheku9
