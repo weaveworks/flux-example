@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   annotations:
     flux.policy.locked: "true"
-    flux.weave.works/locked: "true"
   name: helloworld
 spec:
   minReadySeconds: 1
