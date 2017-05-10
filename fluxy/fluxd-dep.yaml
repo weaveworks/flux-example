@@ -2,30 +2,34 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: fluxd
-  namespace: fluxy
+  name: flux
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: fluxd
+        name: flux
     spec:
+      # The serviceAccount is only needed for Kubernetes with RBAC
+      serviceAccount: flux
       volumes:
       - name: git-key
         secret:
           secretName: flux-git-deploy
-#          defaultMode: 0400 # ignored by Kubernetes < 1.6
       containers:
       - name: fluxd
-        image: quay.io/squaremo/fluxd
+        image: quay.io/weaveworks/fluxd:latest
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: git-key
           mountPath: /secrets/flux/git
         args:
+        # operational stuff
+        - --memcached-hostname=memcached.default.svc.cluster.local
+        - --memcached-timeout=100ms
+        - --memcached-service=memcached
+        - --registry-cache-expiry=20m
+        # replace the following URL
         - --git-url=git@github.com:squaremo/flux-example
         - --git-key=/secrets/flux/git/id-rsa-flux
-        - --git-branch=gitsync
-        - --connect=ws://authfe.default.svc.cluster.local/api/flux
-        - --token=pj38xti4qc3zaz1n4afyc675g3kzf88a
+        - --git-branch=master
