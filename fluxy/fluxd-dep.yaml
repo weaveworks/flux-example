@@ -32,4 +32,4 @@ spec:
         # replace the following URL
         - --git-url=git@github.com:squaremo/flux-example
         - --git-key=/secrets/flux/git/id-rsa-flux
-        - --git-branch=master
+        - --git-branch=gitsync
