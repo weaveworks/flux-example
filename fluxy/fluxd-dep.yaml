@@ -25,7 +25,7 @@ spec:
           mountPath: /secrets/flux/git
         args:
         # operational stuff
-        - --memcached-hostname=memcached.default.svc.cluster.local
+        - --memcached-hostname=memcached.fluxy.svc.cluster.local
         - --memcached-timeout=100ms
         - --memcached-service=memcached
         - --registry-cache-expiry=20m
