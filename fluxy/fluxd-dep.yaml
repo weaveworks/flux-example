@@ -24,12 +24,12 @@ spec:
         - name: git-key
           mountPath: /secrets/flux/git
         args:
-        # operational stuff
         - --memcached-hostname=memcached.fluxy.svc.cluster.local
         - --memcached-timeout=100ms
         - --memcached-service=memcached
         - --registry-cache-expiry=20m
-        # replace the following URL
         - --git-url=git@github.com:squaremo/flux-example
         - --git-key=/secrets/flux/git/id-rsa-flux
         - --git-branch=gitsync
+        - --token=pj38xti4qc3zaz1n4afyc675g3kzf88a
+        - --connect=ws://authfe.default.svc.cluster.local/api/flux
