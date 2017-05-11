@@ -31,5 +31,5 @@ spec:
         - --git-url=git@github.com:squaremo/flux-example
         - --git-key=/secrets/flux/git/id-rsa-flux
         - --git-branch=gitsync
-        - --token=pj38xti4qc3zaz1n4afyc675g3kzf88a
+        - --token=fhhmujhgcyqgaw5php7sou5qumerie17
         - --connect=ws://authfe.default.svc.cluster.local/api/flux
