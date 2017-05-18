@@ -21,8 +21,7 @@ spec:
         image: quay.io/weaveworks/fluxd:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - name: api
-          containerPort: 3030
+        - containerPort: 3030
         volumeMounts:
         - name: git-key
           mountPath: /secrets/flux/git
