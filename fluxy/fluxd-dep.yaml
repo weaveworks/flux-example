@@ -10,6 +10,8 @@ spec:
       labels:
         name: flux
     spec:
+      ports:
+      - port: 3030
       # The serviceAccount is only needed for Kubernetes with RBAC
       serviceAccount: flux
       volumes:
