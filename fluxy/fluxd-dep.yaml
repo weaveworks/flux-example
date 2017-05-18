@@ -10,8 +10,6 @@ spec:
       labels:
         name: flux
     spec:
-      ports:
-      - port: 3030
       # The serviceAccount is only needed for Kubernetes with RBAC
       serviceAccount: flux
       volumes:
@@ -22,6 +20,9 @@ spec:
       - name: fluxd
         image: quay.io/weaveworks/fluxd:latest
         imagePullPolicy: IfNotPresent
+        ports:
+        - name: api
+          containerPort: 3030
         volumeMounts:
         - name: git-key
           mountPath: /secrets/flux/git
