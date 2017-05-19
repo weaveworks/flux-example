@@ -26,6 +26,7 @@ spec:
         - name: git-key
           mountPath: /secrets/flux/git
         args:
+        - --listen=:3030
         - --memcached-hostname=memcached.fluxy.svc.cluster.local
         - --memcached-timeout=100ms
         - --memcached-service=memcached
