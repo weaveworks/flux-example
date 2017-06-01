@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
   name: helloworld
+  namespace: hello
 spec:
   ports:
     - port: 80

@@ -4,6 +4,7 @@ metadata:
   annotations:
     flux.policy.locked: "true"
   name: helloworld
+  namespace: hello
 spec:
   minReadySeconds: 1
   replicas: 5

@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: flux
-  namespace: fluxy
+  namespace: hello
 spec:
   replicas: 1
   template:
@@ -18,6 +18,13 @@ spec:
         secret:
           secretName: flux-git-deploy
       containers:
+      - name: memcached
+        image: memcached:1.4.25
+        imagePullPolicy: IfNotPresent
+        args:
+        - -m 64    # Maximum memory to use, in megabytes. 64MB is default.
+        - -p 11211    # Default port, but being explicit is nice.
+        - -vv    # This gets us to the level of request logs.
       - name: fluxd
         image: quay.io/weaveworks/fluxd:latest
         imagePullPolicy: IfNotPresent
@@ -25,15 +32,12 @@ spec:
         - containerPort: 3030
         volumeMounts:
         - name: git-key
-          mountPath: /secrets/flux/git
+          mountPath: /etc/fluxd/ssh
         args:
-        - --listen=:3030
-        - --memcached-hostname=memcached.fluxy.svc.cluster.local
+        - --memcached-hostname=localhost
         - --memcached-timeout=100ms
-        - --memcached-service=memcached
         - --registry-cache-expiry=20m
         - --git-url=git@github.com:squaremo/flux-example
-        - --git-key=/secrets/flux/git/id-rsa-flux
         - --git-branch=gitsync
-        - --token=fhhmujhgcyqgaw5php7sou5qumerie17
+        - --token=local-test-token
         - --connect=ws://authfe.default.svc.cluster.local/api/flux
