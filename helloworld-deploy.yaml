@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   annotations:
     flux.weave.works/automated: "true"
-    flux.weave.works/locked: "true"
     flux.weave.works/tag: glob:*-a000002
   name: helloworld
   namespace: hello
