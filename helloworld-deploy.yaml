@@ -2,8 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   annotations:
-    flux.policy.locked: "true"
-    flux.policy.tag: glob:*-a000002
+    flux.weave.works/tag: "glob:*-a000002"
     flux.weave.works/locked: "true"
   name: helloworld
   namespace: hello
