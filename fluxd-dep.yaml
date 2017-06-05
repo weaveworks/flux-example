@@ -34,8 +34,9 @@ spec:
         - name: git-key
           mountPath: /etc/fluxd/ssh
         args:
-        - --memcached-hostname=localhost
+        - --memcached-hostname=memcached.hello.svc.cluster.local
         - --memcached-timeout=100ms
+        - --memcached-service=memcached
         - --registry-cache-expiry=20m
         - --git-url=git@github.com:squaremo/flux-example
         - --git-branch=gitsync
