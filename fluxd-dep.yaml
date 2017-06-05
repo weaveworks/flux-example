@@ -19,8 +19,8 @@ spec:
           secretName: flux-git-deploy
       containers:
       - name: fluxd
-        image: quay.io/weaveworks/fluxd:latest
-        imagePullPolicy: IfNotPresent
+        image: quay.io/weaveworks/flux
+        imagePullPolicy: Never
         ports:
         - containerPort: 3030
         volumeMounts:
