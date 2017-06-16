@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     flux.weave.works/automated: "true"
-    flux.weave.works/tag.helloworld: glob:*1
+    flux.weave.works/tag.helloworld: glob:master-*
   name: helloworld
   namespace: hello
 spec:
