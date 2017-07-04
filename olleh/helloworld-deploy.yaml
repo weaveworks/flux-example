@@ -2,6 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   annotations:
+    flux.weave.works/automated: "true"
     flux.weave.works/tag.helloworld: glob:*1
   name: helloworld
   namespace: olleh
