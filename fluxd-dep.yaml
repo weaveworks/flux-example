@@ -22,7 +22,7 @@ spec:
       containers:
       - name: fluxd
         image: quay.io/weaveworks/flux:master-7b742aa
-        imagePullPolicy: Never
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3030
         volumeMounts:
