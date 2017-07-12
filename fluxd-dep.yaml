@@ -2,8 +2,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    flux.weave.works/automated: "true"
   name: flux
   namespace: hello
 spec:
