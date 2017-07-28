@@ -32,7 +32,7 @@ spec:
         - --memcached-hostname=memcached.hello.svc.cluster.local
         - --memcached-timeout=100ms
         - --memcached-service=memcached
-        - --registry-cache-expiry=20m
+        - --registry-cache-expiry=30m
         - --git-url=git@github.com:squaremo/flux-example
         - --git-branch=gitsync
         - --token=local-test-token
