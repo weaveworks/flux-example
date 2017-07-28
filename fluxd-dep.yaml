@@ -19,7 +19,6 @@ spec:
       - name: git-key
         secret:
           secretName: flux-git-deploy
-      volumes:
       - name: image-creds
         secret:
           secretName: flux-image-creds
