@@ -5,6 +5,7 @@ metadata:
     flux.weave.works/tag.hello: glob:master-a*
     flux.weave.works/tag.helloworld: glob:master-*
     flux.weave.works/tag.sidecar: glob:master-*
+    pointless: annotation
   name: helloworld
   namespace: hello
 spec:
