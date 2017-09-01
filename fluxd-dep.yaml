@@ -19,9 +19,6 @@ spec:
       - name: git-key
         secret:
           secretName: flux-git-deploy
-      - name: image-creds
-        secret:
-          secretName: flux-image-creds
       containers:
       - name: fluxd
         image: quay.io/weaveworks/flux
@@ -31,8 +28,6 @@ spec:
         volumeMounts:
         - name: git-key
           mountPath: /etc/fluxd/ssh
-        - name: image-creds
-          mountPath: /etc/fluxd/docker
         args:
         - --memcached-hostname=memcached.hello.svc.cluster.local
         - --memcached-timeout=100ms
