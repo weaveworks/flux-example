@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: flux
-  namespace: hello
+  namespace: kube-system
 spec:
   replicas: 1
   strategy:
@@ -37,7 +37,6 @@ spec:
         - --memcached-hostname=memcached.hello.svc.cluster.local
         - --memcached-timeout=100ms
         - --memcached-service=memcached
-        - --docker-config=/etc/fluxd/docker/config.json
         - --git-url=git@github.com:squaremo/flux-example
         - --git-branch=gitsync
         - --token=local-test-token
