@@ -2,6 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   annotations:
+    flux.weave.works/locked: "true"
+    flux.weave.works/locked_msg: Locking with a message
+    flux.weave.works/locked_user: mikeb
     flux.weave.works/lockedMsg: Locked message goes here
     flux.weave.works/lockedUser: michael@weave.works
     flux.weave.works/tag.hello: glob:master-a*
