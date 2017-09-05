@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   annotations:
     flux.weave.works/locked: "true"
-    flux.weave.works/lockedUser: "michael@weave.works"
-    flux.weave.works/lockedMsg: "Locked message goes here"
+    flux.weave.works/lockedMsg: Locked message goes here
+    flux.weave.works/lockedUser: michael@weave.works
     flux.weave.works/tag.hello: glob:master-a*
     flux.weave.works/tag.helloworld: glob:master-*
     flux.weave.works/tag.sidecar: glob:master-*
