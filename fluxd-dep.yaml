@@ -34,5 +34,6 @@ spec:
         - --memcached-service=memcached
         - --git-url=git@github.com:squaremo/flux-example
         - --git-branch=gitsync
+        - --git-set-author
         - --token=local-test-token
         - --connect=ws://authfe.default.svc.cluster.local/api/flux
