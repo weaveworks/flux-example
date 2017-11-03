@@ -2,7 +2,6 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   annotations:
-    flux.weave.works/locked: "true"
     flux.weave.works/tag.hello: glob:master-a*
     flux.weave.works/tag.helloworld: glob:master-a00000*
     flux.weave.works/tag.sidecar: glob:master-*
