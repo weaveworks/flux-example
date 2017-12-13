@@ -17,7 +17,7 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: cron
-            image: alpine
+            image: alpine # Here's a comment
             imagePullPolicy: IfNotPresent
             command:
             - echo
