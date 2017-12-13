@@ -22,4 +22,7 @@ spec:
             command:
             - echo
             args:
-            - HELLO
+            - |-
+                {
+                  "here": "is", "some": "JSON!"
+                }
