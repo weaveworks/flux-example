@@ -16,13 +16,23 @@ spec:
         spec:
           restartPolicy: OnFailure
           containers:
-          - name: cron
-            image: alpine # Here's a comment
-            imagePullPolicy: IfNotPresent
+          - name: weekly-hello-cron
+            image: centos # Has curl installed by default
+            imagePullPolicy: Always
             command:
             - echo
             args:
+            - -X
+            - POST
+            - https://example.com/hello
+            - -H
+            - 'Content-Type: application/json'
+            - -H
+            - 'Authorization: xxxxxxx'
+            - -d
             - |-
-                {
-                  "here": "is", "some": "JSON!"
-                }
+                 {
+                    "message": "HELLO",
+                    "description":"to all the people in the world",
+                    "priority":"P1"
+                  }
