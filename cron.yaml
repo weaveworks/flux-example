@@ -2,14 +2,14 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  namespace: monitoring
-  name: weekly-alert-uk
+  namespace: hello
+  name: hellocron
 spec:
   # During daylight savings time, this will notify an hour and five minutes
   # after the Wednesday UK handover (1500 local time) rather than five minutes
   # after during standard time. Can be improved when
   # https://github.com/kubernetes/kubernetes/issues/47202 is fixed.
-  schedule: "5 15 * * 3"
+  schedule: "* * * * *"
   jobTemplate:
     spec:
       template:
