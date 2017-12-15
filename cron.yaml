@@ -17,7 +17,7 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: weekly-hello-cron
-            image: centos # Has curl installed by default
+            image: alpine # Comment goes here
             imagePullPolicy: Always
             command:
             - echo
