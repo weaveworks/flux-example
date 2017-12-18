@@ -1,5 +1,5 @@
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v2alpha1
 kind: CronJob
 metadata:
   namespace: hello
@@ -17,7 +17,7 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: weekly-hello-cron
-            image: alpine # Comment goes here
+            image: alpine:3.4 # Comment goes here
             imagePullPolicy: Always
             command:
             - echo
