@@ -17,7 +17,7 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: weekly-hello-cron
-            image: alpine:3.5 # Comment goes here
+            image: alpine:3.4 # Comment goes here
             imagePullPolicy: Always
             command:
             - echo
