@@ -1,0 +1,141 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: prometheus
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources:
+  - configmaps
+  verbs: ["get"]
+- nonResourceURLs: ["/metrics"]
+  verbs: ["get"]
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus
+subjects:
+- kind: ServiceAccount
+  name: prometheus
+  namespace: default
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-global
+  labels:
+    prometheus: global
+spec:
+  type: ClusterIP
+  ports:
+  - name: web
+    port: 9090
+    protocol: TCP
+    targetPort: web
+  selector:
+    prometheus: prometheus
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: prometheus-global
+  labels:
+    team: global
+spec:
+  selector:
+    matchLabels:
+      prometheus: global
+  endpoints:
+    - port: web
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+spec:
+  retention: 720h
+  serviceMonitorSelector:
+    matchLabels:
+      team: global
+  ruleSelector:
+    matchLabels:
+      role: prometheus-rulefiles
+      prometheus: prometheus
+  version: v2.0.0-rc.2
+  serviceAccountName: prometheus
+  # Temporary until we set up some kind of auth
+  externalUrl: http://127.0.0.1:8001/api/v1/proxy/namespaces/default/services/prometheus-global:web/
+  resources:
+    requests:
+      memory: 400Mi
+  storage:
+    resources:
+      requests:
+        storage: 40Gi
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: prometheus-rules
+  labels:
+    role: prometheus-rulefiles
+    prometheus: prometheus
+data:
+  http.rules.yml: |
+    groups:
+    - name: http.rules
+      rules:
+      - record: service_status:http_request_duration_seconds_count:irate
+        expr: sum(irate(http_request_duration_seconds_count[15m])) BY (service, status_code)
+      - record: service:http_request_duration_seconds:50p
+        expr: histogram_quantile(0.5, sum(irate(http_request_duration_seconds[15m]))
+          BY (service, le))
+      - record: service:http_request_duration_seconds:90p
+        expr: histogram_quantile(0.9, sum(irate(http_request_duration_seconds[15m]))
+          BY (service, le))
+      - record: service:http_request_duration_seconds:99p
+        expr: histogram_quantile(0.99, sum(irate(http_request_duration_seconds[15m]))
+          BY (service, le))
+  isaacranks.rules: |
+    groups:
+    - name: isaacranks.rules
+      rules:
+      - record: service_version:isaacranks_ballot_generation_seconds_count:irate
+        expr: sum(irate(isaacranks_ballot_generation_seconds_count[15m])) BY (service,
+          version)
+      - record: service:isaacranks_ballot_generation_seconds:50p
+        expr: histogram_quantile(0.5, sum(irate(isaacranks_ballot_generation_seconds[15m]))
+          BY (service, le))
+      - record: service:isaacranks_ballot_generation_seconds:90p
+        expr: histogram_quantile(0.9, sum(irate(isaacranks_ballot_generation_seconds[15m]))
+          BY (service, le))
+      - record: service:isaacranks_ballot_generation_seconds:99p
+        expr: histogram_quantile(0.99, sum(irate(isaacranks_ballot_generation_seconds[15m]))
+          BY (service, le))
+      - record: service_version:isaacranks_vote_casting_seconds_count:irate
+        expr: sum(irate(isaacranks_vote_casting_seconds_count[15m])) BY (service, version)
+      - record: service:isaacranks_vote_casting_seconds:50p
+        expr: histogram_quantile(0.5, sum(irate(isaacranks_vote_casting_seconds[15m]))
+          BY (service, le))
+      - record: service:isaacranks_vote_casting_seconds:90p
+        expr: histogram_quantile(0.9, sum(irate(isaacranks_vote_casting_seconds[15m]))
+          BY (service, le))
+      - record: service:isaacranks_vote_casting_seconds:99p
+        expr: histogram_quantile(0.99, sum(irate(isaacranks_vote_casting_seconds[15m]))
+          BY (service, le))
