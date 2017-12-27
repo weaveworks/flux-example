@@ -24,5 +24,5 @@ spec:
         ports:
         - containerPort: 80
       - name: sidecar
-        image: tomwilkie/git-sync:f6165715ce9d
+        image: quay.io/weaveworks/sidecar:master-a000002
       restartPolicy: Always
