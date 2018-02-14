@@ -2,7 +2,6 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   annotations:
-    flux.weave.works/automated: "true"
     flux.weave.works/locked: "true"
     flux.weave.works/locked_msg: locky locky lock
     flux.weave.works/locked_user: michael <michael@weave.works>
