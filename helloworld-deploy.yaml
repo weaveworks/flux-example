@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: quay.io/weaveworks/helloworld:master-07a1b6b
+        image: quay.io/weaveworks/helloworld:master-a000003
         args:
         - -msg=Bilbo Baggins
         ports:
