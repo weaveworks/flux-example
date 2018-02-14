@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   annotations:
     flux.weave.works/automated: "true"
+    flux.weave.works/locked: "true"
+    flux.weave.works/locked_msg: locky locky lock
+    flux.weave.works/locked_user: michael <michael@weave.works>
     flux.weave.works/tag.helloworld: glob:master-*
 #    flux.weave.works/tag.sidecar: glob:3.*
   name: helloworld
