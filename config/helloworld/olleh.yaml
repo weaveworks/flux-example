@@ -16,7 +16,7 @@ items:
       spec:
         containers:
         - name: ollehworld
-          image: quay.io/weaveworks/helloworld:master-a000004
+          image: quay.io/weaveworks/helloworld:master-a000001
           args:
             - -msg=OLLEH
           ports:
