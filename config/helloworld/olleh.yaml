@@ -9,10 +9,6 @@ items:
     namespace: hello
     annotations:
       flux.weave.works/automated: 'true'
-      flux.weave.works/locked: 'true'
-      flux.weave.works/locked_msg: "It just needs to be locked.\n\nWith a multliline,\
-        \ _markdown_ message."
-      flux.weave.works/locked_user: test <test@test.test>
   spec:
     minReadySeconds: 1
     replicas: 5
