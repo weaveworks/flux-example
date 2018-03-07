@@ -9,6 +9,9 @@ items:
     namespace: hello
     annotations:
       flux.weave.works/automated: 'true'
+      flux.weave.works/locked: 'true'
+      flux.weave.works/locked_msg: "M\nU\nL\nT\nI"
+      flux.weave.works/locked_user: test <test@test.test>
   spec:
     minReadySeconds: 1
     replicas: 5
