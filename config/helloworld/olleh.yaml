@@ -19,13 +19,13 @@ items:
       spec:
         containers:
         - name: ollehworld
-          image: quay.io/weaveworks/helloworld:master-a000004
+          image: quay.io/weaveworks/helloworld:master-07a1b6b
           args:
           - -msg=OLLEH
           ports:
           - containerPort: 80
         - name: sidecar
-          image: quay.io/weaveworks/sidecar:master-a000001
+          image: quay.io/weaveworks/sidecar:master-a000002
           args:
           - -addr=:8080
           ports:
