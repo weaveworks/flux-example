@@ -1,10 +1,15 @@
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  annotations:
+    flux.weave.works/tag.helloworld: glob:master-*
+#    flux.weave.works/tag.sidecar: glob:3.*
   name: helloworld
+  namespace: hello
 spec:
-  minReadySeconds: 5
-  replicas: 2
+  minReadySeconds: 1
+  replicas: 5
   template:
     metadata:
       labels:
@@ -12,14 +17,15 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: quay.io/weaveworks/helloworld:master-a000001
+        image: quay.io/weaveworks/helloworld:master-a000004
         args:
-        - -msg=Ahoy
+        - -msg=Bilbo Baggins
         ports:
         - containerPort: 80
       - name: sidecar
-        image: quay.io/weaveworks/sidecar:master-a000001
+        image: quay.io/weaveworks/sidecar:master-a000002
         args:
         - -addr=:8080
         ports:
         - containerPort: 8080
+      restartPolicy: Always
