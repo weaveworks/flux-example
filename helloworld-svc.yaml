@@ -1,8 +1,7 @@
 apiVersion: v1
-kind: MightService
+kind: Service
 metadata:
   name: helloworld
-  namespace: hello
 spec:
   ports:
     - port: 80

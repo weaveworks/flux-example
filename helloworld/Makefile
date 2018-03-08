@@ -1,14 +1,14 @@
 .PHONY: all
 all: .helloworld
 
-REV:=$(shell git rev-parse --short HEAD)
+REV=a000001
 
 .helloworld: helloworld-linux-amd64 Dockerfile
-	docker build --build-arg "VCS_REF=${REV}" -t quay.io/weaveworks/helloworld:master-${REV} .
+	docker build -t quay.io/weaveworks/helloworld:master-${REV} .
 	touch $@
 
 helloworld-linux-amd64: helloworld.go
-	env GOOS=linux GOARCH=amd64 go build -tags netgo -ldflags="-X main.rev=${REV}" -o $@ $*
+	env GOOS=linux GOARCH=amd64 go build -ldflags="-X main.rev=${REV}" -o $@ $*
 
 .PHONY: clean
 clean:
